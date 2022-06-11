@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GraphiQL</title>
+
+<!-- REPLACE_ASSETS -->
+
+    <style>
+      body {
+        height: 100%;
+        margin: 0;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      #graphiql {
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="graphiql">Loading...</div>
+    <script>
+      const fetchUrl = window.location.origin + "REPLACE_ENDPOINT";
+
+      function graphQLFetcher(graphQLParams) {
+        return fetch(
+          fetchUrl,
+          {
+            method: 'post',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(graphQLParams),
+            credentials: 'include',
+          },
+        ).then(function (response) {
+          return response.json().catch(function () {
+            return response.text();
+          });
+        });
+      }
+
+      ReactDOM.render(
+        React.createElement(GraphiQL, {
+          fetcher: graphQLFetcher,
+          defaultVariableEditorOpen: true,
+        }),
+        document.getElementById('graphiql'),
+      );
+    </script>
+  </body>
+</html>
