@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "lib/graphiql/rack/version"
+require_relative "lib/graphiql_rack/version"
 
 Gem::Specification.new do |spec|
   spec.name = "graphiql-rack"
-  spec.version = Graphiql::Rack::VERSION
+  spec.version = GraphiQLRack::VERSION
   spec.authors = ["Matthew Banbury"]
   spec.email = ["mbanbury@gmail.com"]
 

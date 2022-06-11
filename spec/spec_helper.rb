@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "graphiql/rack"
+require "graphiql_rack"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
