@@ -18,8 +18,8 @@ task :build do
   SOURCE_FILE_HTML = "./src/base.html"
   STATIC_FILE_HTML = "./lib/graphiql_rack/static.html"
   ASSETS = [
-    { type: "style",  name: "./bld/node_modules/graphiql/graphiql.css" },
-    { type: "script", name: "./bld/node_modules/react/umd/react.development.js" },
+    { type: "style",  name: "./bld/node_modules/graphiql/graphiql.min.css" },
+    { type: "script", name: "./bld/node_modules/react/umd/react.production.min.js" },
     { type: "script", name: "./bld/node_modules/react-dom/umd/react-dom.production.min.js" },
     { type: "script", name: "./bld/node_modules/graphiql/graphiql.js" },
   ]

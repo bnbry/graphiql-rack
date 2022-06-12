@@ -1,27 +1,19 @@
 # frozen_string_literal: true
 
-require "rack"
-require "erb"
-
 module GraphiQLRack
   class App
     DEFAULT_CONFIG = {
       endpoint: "/graphql"
     }
     FILE_NAME = "static.html"
+    RAILS_PARAMS = "action_dispatch.request.path_parameters"
 
     def self.call(env)
-      new.call(env)
-    end
+      body = File.read(File.join([File.dirname(__FILE__), FILE_NAME]))
+      config = env.fetch(RAILS_PARAMS, DEFAULT_CONFIG)
+      body.gsub!("REPLACE_ENDPOINT", config[:endpoint])
 
-    def initialize
-      @static = File.read(File.join([File.dirname(__FILE__), FILE_NAME]))
-    end
-
-    def call(env)
-      config = env.fetch("action_dispatch.request.path_parameters", DEFAULT_CONFIG)
-      @static.gsub!("REPLACE_ENDPOINT", config[:endpoint])
-      [200, { "Content-Type" => "text/html" }, [@static]]
+      [200, { "Content-Type" => "text/html" }, [body]]
     end
   end
 end
